@@ -1,0 +1,35 @@
+*** Function Changelog ***
+
+2012.12.18 - version 1.1.1
+ * includes/featured-slider.php - Changed video height to 551px (16:9)
+ * style.css - Fixed Testimonials and price in mobile mode plugin styling and price overlap in mobile mode.
+ * includes/theme-functions.php - Renamed "woo_header_search" to "woo_header_components" and moved mini cart inside.
+ * header.php - removed mini cart (moved to theme-functions.php)
+ * css/woocommerce.css - Fixed overlap of pagination, sort selector and price in mobile mode
+ * includes/theme-woocommerce.php - Fixed header styling problem
+
+2012.12.06 - version 1.1
+ * style.css
+   woocommerce.css - Styling preparation for WooCommerce 2.0
+ * includes/theme-woocommerce.php - disable WooCommerce lightbox when prettyPhoto is enabled
+
+2012.11.29 - version 1.0.3
+ * includes/theme-actions.php - load layout.css in header & fixed duplicated lightbox bug.
+ * style.css - remove layout.less from being included & improved Contact Template styling
+ * css/layout.css - added CSS file and changed media query to "all" & improved Contact Template styling
+ * styles/* - (ALL alt styles) fixed alt styles to work with 1.0.3
+ * includes/widgets/widget-woo-component.php - Removed invalid "Home Shop" item from the list.
+
+
+2012.11.27 - version 1.0.2
+ * includes/theme-widgets.php - added missing Woo Component widget
+ * includes/theme-options.php - added missing $other_entries variable for maps zoom level option,  moved backgroung to style.css and remove it from the options.
+ * style.css - moved background to style.css and removed it from the options. Fixed Contact Page Subscribe & Connect section.
+ * css/woocommerce.css - fixed cart double border issue.
+ * styles/* - (ALL Alt Styles) Fixed issue with images not showing up.
+
+2012.11.23 - version 1.0.1
+ * includes/theme-actions.php - Fix invalid function name when child theme active
+	
+2012.11.22 - version 1.0
+ * First release!
