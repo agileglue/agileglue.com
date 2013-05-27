@@ -2,8 +2,8 @@
 Contributors: woothemes, mattyza, warrenholmes, cobusbester, jeffikus
 Tags: woodojo, widget, shortlinks, twitter, admin
 Requires at least: 3.3
-Tested up to: 3.4.2
-Stable tag: 1.4.0
+Tested up to: 3.5.0
+Stable tag: 1.5.0
 
 WooDojo is a powerful collection of WooThemes features, to enhance your website with the features you need.
 
@@ -68,6 +68,19 @@ Bugs can be reported in our [WooThemes Support Desk](http://support.woothemes.co
 1. The WooDojo features screen.
 
 == Changelog ==
+
+= 1.5.0 =
+
+* Improved Twitter API error handling in the WooDojo Tweets widget.
+* Added "retweeted via username" to tweets that are retweets.
+* Removed WooTransmitter installer file.
+* Added the "HTML Term Description" feature into WooDojo core as a bundled feature.
+* Added the "Tab Grouping" feature into WooDojo core as a bundled feature.
+
+= 1.4.1 =
+
+* Fixes bug in the Settings API tab switching logic, when used with WordPress 3.5 and jQuery 1.8.2.
+* General code optimisations.
 
 = 1.4.0 =
 

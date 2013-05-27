@@ -1,15 +1,15 @@
 <?php
 /*
  * Plugin Name: Google Analyticator
- * Version: 6.4.1
- * Plugin URI: http://wordpress.org/extend/plugins/google-analyticator/
+ * Version: 6.4.4.3
+ * Plugin URI: http://www.videousermanuals.com/google-analyticator/?utm_campaign=analyticator&utm_medium=plugin&utm_source=readme-txt
  * Description: Adds the necessary JavaScript code to enable <a href="http://www.google.com/analytics/">Google's Analytics</a>. After enabling this plugin you need to authenticate with Google, then select your domain and you're set.
- * Author: Video User Manuals
- * Author URI: http://www.videousermanuals.com
+ * Author: Video User Manuals Pty Ltd
+ * Author URI: http://www.videousermanuals.com/?utm_campaign=analyticator&utm_medium=plugin&utm_source=readme-txt
  * Text Domain: google-analyticator
  */
 
-define('GOOGLE_ANALYTICATOR_VERSION', '6.4.1');
+define('GOOGLE_ANALYTICATOR_VERSION', '6.4.4.3');
 
 define('GOOGLE_ANALYTICATOR_CLIENTID', '1007949979410.apps.googleusercontent.com');
 define('GOOGLE_ANALYTICATOR_CLIENTSECRET', 'q06U41XDXtzaXD14E-KO1hti'); //don't worry - this don't need to be secret in our case
@@ -106,7 +106,7 @@ function ga_admin_init() {
 }
 
 # Add the core Google Analytics script, with a high priority to ensure last script for async tracking
-add_action('wp_head', 'add_google_analytics', 999999);
+add_action('wp_head', 'add_google_analytics',99);
 add_action('login_head', 'add_google_analytics', 999999);
 
 # Initialize outbound link tracking
@@ -283,28 +283,28 @@ function ga_options_page() {
 
 
 		// Update the status
-		$ga_status = $_POST[key_ga_status];
+		$ga_status = wp_filter_kses( $_POST[key_ga_status] );
 		if (($ga_status != ga_enabled) && ($ga_status != ga_disabled))
 			$ga_status = ga_status_default;
 		update_option(key_ga_status, $ga_status);
 
 		// Update the UID
-		$ga_uid = $_POST[key_ga_uid];
+		$ga_uid = wp_filter_kses( $_POST[key_ga_uid] );
 		if ($ga_uid == '')
 			$ga_uid = ga_uid_default;
 		update_option(key_ga_uid, $ga_uid);
 
 		// Update the admin logging
-		$ga_admin = $_POST[key_ga_admin];
+		$ga_admin = wp_filter_kses( $_POST[key_ga_admin] );
 		if (($ga_admin != ga_enabled) && ($ga_admin != ga_disabled))
 			$ga_admin = ga_admin_default;
-		update_option(key_ga_admin, $ga_admin);
+		update_option(key_ga_admin, wp_filter_kses( $ga_admin ) );
 
 		// Update the admin disable setting
-		$ga_admin_disable = $_POST[key_ga_admin_disable];
+		$ga_admin_disable = wp_filter_kses( $_POST[key_ga_admin_disable] );
 		if ( $ga_admin_disable == '' )
 			$ga_admin_disable = ga_admin_disable_default;
-		update_option(key_ga_admin_disable, $ga_admin_disable);
+		update_option(key_ga_admin_disable, wp_filter_kses( $ga_admin_disable) );
 
 		// Update the admin level
 		if ( array_key_exists(key_ga_admin_role, $_POST) ) {
@@ -320,56 +320,56 @@ function ga_options_page() {
 		} else {
 			$ga_dashboard_role = "";
 		}
-		update_option(key_ga_dashboard_role, $ga_dashboard_role);
+		update_option(key_ga_dashboard_role, $ga_dashboard_role );
 
 		// Update the extra tracking code
 		$ga_extra = $_POST[key_ga_extra];
-		update_option(key_ga_extra, $ga_extra);
+		update_option(key_ga_extra, wp_filter_kses( $ga_extra ) );
 
 		// Update the extra after tracking code
 		$ga_extra_after = $_POST[key_ga_extra_after];
-		update_option(key_ga_extra_after, $ga_extra_after);
+		update_option(key_ga_extra_after, wp_filter_kses( $ga_extra_after ));
 
 		// Update the adsense key
 		$ga_adsense = $_POST[key_ga_adsense];
-		update_option(key_ga_adsense, $ga_adsense);
+		update_option(key_ga_adsense, wp_filter_kses( $ga_adsense ) );
 
 		// Update the event tracking
 		$ga_event = $_POST[key_ga_event];
 		if (($ga_event != ga_enabled) && ($ga_event != ga_disabled))
 			$ga_event = ga_event_default;
-		update_option(key_ga_event, $ga_event);
+		update_option(key_ga_event, wp_filter_kses ( $ga_event ) );
 
 		// Update the outbound tracking
 		$ga_outbound = $_POST[key_ga_outbound];
 		if (($ga_outbound != ga_enabled) && ($ga_outbound != ga_disabled))
 			$ga_outbound = ga_outbound_default;
-		update_option(key_ga_outbound, $ga_outbound);
+		update_option(key_ga_outbound, wp_filter_kses( $ga_outbound ) );
 
 		// Update the outbound prefix
 		$ga_outbound_prefix = $_POST[key_ga_outbound_prefix];
 		if ($ga_outbound_prefix == '')
 			$ga_outbound_prefix = ga_outbound_prefix_default;
-		update_option(key_ga_outbound_prefix, $ga_outbound_prefix);
+		update_option(key_ga_outbound_prefix, wp_filter_kses( $ga_outbound_prefix) );
 
 		// Update the download tracking code
 		$ga_downloads = $_POST[key_ga_downloads];
-		update_option(key_ga_downloads, $ga_downloads);
+		update_option(key_ga_downloads, wp_filter_kses( $ga_downloads ) );
 
 		// Update the download prefix
 		$ga_downloads_prefix = $_POST[key_ga_downloads_prefix];
 		if ($ga_downloads_prefix == '')
 			$ga_downloads_prefix = ga_downloads_prefix_default;
-		update_option(key_ga_downloads_prefix, $ga_downloads_prefix);
+		update_option(key_ga_downloads_prefix, wp_filter_kses( $ga_downloads_prefix) );
 
 		// Update the widgets option
 		$ga_widgets = $_POST[key_ga_widgets];
 		if (($ga_widgets != ga_enabled) && ($ga_widgets != ga_disabled))
 			$ga_widgets = ga_widgets_default;
-		update_option(key_ga_widgets, $ga_widgets);
+		update_option(key_ga_widgets, wp_filter_kses( $ga_widgets ) );
 
                 // Update the widgets option
-		update_option(key_ga_annon, $_POST[key_ga_annon] );
+		update_option(key_ga_annon, wp_filter_kses( $_POST[key_ga_annon] ) );
 
                 
 		// Give an updated message
@@ -387,7 +387,6 @@ function ga_options_page() {
 		<div class="wrap">
 
 		<h2><?php _e('Google Analyticator Settings', 'google-analyticator'); ?></h2>
-
 		<form method="post" action="<?php echo admin_url('options-general.php?page=google-analyticator.php');?>">
 			<?php
 			# Add a nonce
@@ -630,7 +629,7 @@ function ga_options_page() {
 						echo "<input type='text' size='50' ";
 						echo "name='".key_ga_downloads."' ";
 						echo "id='".key_ga_downloads."' ";
-						echo "value='".stripslashes(get_option(key_ga_downloads))."' />\n";
+						echo "value='".wp_filter_kses(get_option(key_ga_downloads))."' />\n";
 						?>
 						<p  class="setting-description"><?php _e('Enter any extensions of files you would like to be tracked as a download. For example to track all MP3s and PDFs enter <strong>mp3,pdf</strong>. <em>Outbound link tracking must be enabled for downloads to be tracked.</em>', 'google-analyticator'); ?></p>
 					</td>
@@ -644,7 +643,7 @@ function ga_options_page() {
 						echo "<input type='text' size='50' ";
 						echo "name='".key_ga_outbound_prefix."' ";
 						echo "id='".key_ga_outbound_prefix."' ";
-						echo "value='".stripslashes(get_option(key_ga_outbound_prefix))."' />\n";
+						echo "value='".  stripslashes( wp_filter_kses(get_option(key_ga_outbound_prefix)))."' />\n";
 						?>
 						<p  class="setting-description"><?php _e('Enter a name for the section tracked external links will appear under. This option has no effect if event tracking is enabled.', 'google-analyticator'); ?></em></p>
 					</td>
@@ -658,7 +657,7 @@ function ga_options_page() {
 						echo "<input type='text' size='50' ";
 						echo "name='".key_ga_downloads_prefix."' ";
 						echo "id='".key_ga_downloads_prefix."' ";
-						echo "value='".stripslashes(get_option(key_ga_downloads_prefix))."' />\n";
+						echo "value='".stripslashes(wp_filter_kses ( get_option(key_ga_downloads_prefix) ))."' />\n";
 						?>
 						<p  class="setting-description"><?php _e('Enter a name for the section tracked download links will appear under. This option has no effect if event tracking is enabled.', 'google-analyticator'); ?></em></p>
 					</td>
@@ -779,17 +778,10 @@ function ga_options_page() {
 
 
 <?php  if (!get_option('wpm_o_user_id')): ?>
-    <img src="<?php echo plugins_url('wlcms-plugin-advert.png', __FILE__ ); ?>" alt="Learn how to make WordPress better" />
-    <form method="post" onsubmit="return quickValidate()"  action="http://www.aweber.com/scripts/addlead.pl" target="_blank" >
+    <img src="<?php echo plugins_url('ga-plugin-advert.jpg', __FILE__ ); ?>" alt="Google Analytics Getting It Right" />
+    <form accept-charset="utf-8" action="https://app.getresponse.com/add_contact_webform.html" method="post" onsubmit="return quickValidate()" target="_blank">
     <div style="display: none;">
-    <input type="hidden" name="meta_web_form_id" value="672327302" />
-    <input type="hidden" name="meta_split_id" value="" />
-    <input type="hidden" name="listname" value="vumpublic2" />
-    <input type="hidden" name="redirect" value="http://www.aweber.com/thankyou-coi.htm?m=video" id="redirect_9567c93ed4b6fb0c7cd9247553c362eb" />
-    <input type="hidden" name="meta_adtracking" value="ga-plugin" />
-    <input type="hidden" name="meta_message" value="1" />
-    <input type="hidden" name="meta_required" value="name,email" />
-    <input type="hidden" name="meta_tooltip" value="" />
+        <input type="hidden" name="webform_id" value="416798" />
     </div>
     <table style="text-align:center;margin-left: 20px;">
     <tr>
@@ -799,7 +791,7 @@ function ga_options_page() {
     </tr>
     <tr>
     <td colspan="3" style="padding-top: 20px;">
-    <a title="Privacy Policy" href="http://www.aweber.com/permission.htm" target="_blank"><img src="<?php echo plugins_url('privacy.png', __FILE__); ?>"  alt="" title="" /></a>
+    <a title="Privacy Policy" href="http://www.getresponse.com/permission-seal?lang=en" target="_blank"><img src="<?php echo plugins_url('privacy.png', __FILE__); ?>"  alt="" title="" /></a>
     </td>
     </tr>
     </table>
@@ -1015,7 +1007,7 @@ function ga_outgoing_links()
 				# Display page tracking if user is not an admin
 				if ( ( get_option(key_ga_admin) == ga_enabled || !ga_current_user_is(get_option(key_ga_admin_role)) ) && get_option(key_ga_admin_disable) == 'remove' || get_option(key_ga_admin_disable) != 'remove' )
 				{
-					add_action('wp_print_scripts', 'ga_external_tracking_js');
+					add_action('wp_print_scripts', 'ga_external_tracking_js',99999);
 				}
 			}
 		}
@@ -1027,7 +1019,8 @@ function ga_outgoing_links()
  **/
 function ga_external_tracking_js()
 {
-	wp_enqueue_script('ga-external-tracking', plugins_url('/google-analyticator/external-tracking.min.js'), array('jquery'), GOOGLE_ANALYTICATOR_VERSION);
+	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+	wp_enqueue_script('ga-external-tracking', plugins_url("/google-analyticator/external-tracking{$suffix}.js"), array('jquery'), GOOGLE_ANALYTICATOR_VERSION);
 }
 
 /**
